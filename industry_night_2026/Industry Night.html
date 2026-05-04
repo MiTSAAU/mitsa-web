@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Industry Night — MiTSA</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#06091a;
+    --bg-2:#0c1230;
+    --paper:#0f1840;
+    --ink:#eaf2ff;
+    --ink-dim:#9aa6cc;
+    --ink-faint:#4a5380;
+    --line:rgba(120,160,255,0.18);
+    --line-bright:rgba(140,200,255,0.45);
+    --line-faint:rgba(120,160,255,0.08);
+    /* Astro neon palette */
+    --c-cyan:#4cf0ff;
+    --c-blue:#5b8cff;
+    --c-violet:#8b6cff;
+    --c-magenta:#ff5cb6;
+    --c-lime:#c4ff3a;
+    --c-orange:#ff9248;
+    --serif:"Instrument Serif", "Times New Roman", serif;
+    --sans:"Space Grotesk", "Helvetica Neue", sans-serif;
+    --mono:"JetBrains Mono", "SF Mono", monospace;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:var(--sans);overflow-x:hidden}
+  body{min-height:100vh;line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+  img{max-width:100%;display:block}
+
+  ::-webkit-scrollbar{width:10px;background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:var(--c-cyan);border-radius:0}
+  ::-webkit-scrollbar-thumb:hover{background:var(--c-magenta)}
+  ::selection{background:var(--c-lime);color:var(--bg)}
+
+  /* Background — blueprint grid + nebula gradient + canvas starfield */
+  #starfield{position:fixed;inset:0;z-index:0;pointer-events:none}
+  .bg-nebula{
+    position:fixed;inset:-10%;z-index:1;pointer-events:none;
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(91,140,255,0.25), transparent 50%),
+      radial-gradient(ellipse at 80% 60%, rgba(255,92,182,0.18), transparent 55%),
+      radial-gradient(ellipse at 50% 90%, rgba(196,255,58,0.10), transparent 50%);
+    filter:blur(40px); opacity:0.9;
+  }
+  .bg-grid{
+    position:fixed;inset:0;pointer-events:none;z-index:2;
+    background-image:
+      linear-gradient(to right, rgba(91,140,255,0.10) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(91,140,255,0.10) 1px, transparent 1px),
+      linear-gradient(to right, rgba(91,140,255,0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(91,140,255,0.05) 1px, transparent 1px);
+    background-size:160px 160px, 160px 160px, 32px 32px, 32px 32px;
+    mask-image:radial-gradient(ellipse at center, black 30%, transparent 95%);
+  }
+  .bg-grain{
+    position:fixed;inset:0;pointer-events:none;z-index:3;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity:0.5;mix-blend-mode:overlay;
+  }
+  /* Edge rulers */
+  .ruler-top, .ruler-bottom{
+    position:fixed; left:0; right:0; height:18px; z-index:4;
+    pointer-events:none;
+    background-image: repeating-linear-gradient(to right,
+      var(--line) 0, var(--line) 1px, transparent 1px, transparent 40px);
+    background-size: 40px 18px;
+  }
+  .ruler-top{top:0; border-bottom:1px solid var(--line)}
+  .ruler-bottom{bottom:0; border-top:1px solid var(--line)}
+  .ruler-side{
+    position:fixed; top:0; bottom:0; width:18px; z-index:4;
+    pointer-events:none;
+    background-image: repeating-linear-gradient(to bottom,
+      var(--line) 0, var(--line) 1px, transparent 1px, transparent 40px);
+    background-size: 18px 40px;
+  }
+  .ruler-left{left:0; border-right:1px solid var(--line)}
+  .ruler-right{right:0; border-left:1px solid var(--line)}
+  @media (max-width:720px){.ruler-side, .ruler-top, .ruler-bottom{display:none}}
+
+  #cursor-glow{
+    position:fixed;width:520px;height:520px;border-radius:50%;
+    background:radial-gradient(circle, rgba(76,240,255,0.18) 0%, transparent 70%);
+    pointer-events:none;z-index:5;mix-blend-mode:screen;
+    transform:translate(-50%,-50%);
+  }
+  @media (max-width:720px){#cursor-glow{display:none}}
+
+  main{position:relative;z-index:6}
+
+  .mono{font-family:var(--mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-dim)}
+  .serif{font-family:var(--serif);font-weight:400}
+
+  .section-pad{padding:120px 32px;position:relative}
+  @media (min-width:900px){.section-pad{padding:160px 64px}}
+
+  /* Brutalist label */
+  .blueprint-label{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:6px 12px; border:1px solid var(--c-cyan);
+    background:rgba(76,240,255,0.08);
+    font-family:var(--mono); font-size:10px; letter-spacing:0.22em;
+    text-transform:uppercase; color:var(--c-cyan); font-weight:500;
+  }
+
+  /* Splash */
+  #splash{
+    position:fixed;inset:0;z-index:200;background:var(--bg);
+    display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;
+    transition:opacity 0.7s 0.2s ease, visibility 0.7s 0.2s;
+  }
+  #splash.hidden{opacity:0;visibility:hidden}
+  #splash .ring{
+    width:64px;height:64px;border-radius:50%;
+    background:conic-gradient(from 0deg, var(--c-cyan), var(--c-magenta), var(--c-lime), var(--c-violet), var(--c-cyan));
+    animation:spin 1.6s linear infinite;
+    -webkit-mask:radial-gradient(circle, transparent 22px, black 23px);
+            mask:radial-gradient(circle, transparent 22px, black 23px);
+  }
+  #splash .label{font-family:var(--mono);font-size:10px;letter-spacing:0.4em;color:var(--ink-dim)}
+  @keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+<div class="bg-nebula"></div>
+<div class="bg-grid"></div>
+<div class="bg-grain"></div>
+<div class="ruler-top"></div>
+<div class="ruler-bottom"></div>
+<div class="ruler-side ruler-left"></div>
+<div class="ruler-side ruler-right"></div>
+<div id="cursor-glow"></div>
+
+<div id="splash">
+  <div class="ring"></div>
+  <div class="label">INDUSTRY NIGHT · 2026</div>
+</div>
+
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script src="js/starfield.js"></script>
+<script src="js/cursor.js"></script>
+
+<script type="text/babel" src="components/Tilt.jsx"></script>
+<script type="text/babel" src="components/Nav.jsx"></script>
+<script type="text/babel" src="components/Hero.jsx"></script>
+<script type="text/babel" src="components/Meta.jsx"></script>
+<script type="text/babel" src="components/Panelists.jsx"></script>
+<script type="text/babel" src="components/About.jsx"></script>
+<script type="text/babel" src="components/Footer.jsx"></script>
+<script type="text/babel" src="app.jsx"></script>
+
+</body>
+</html>
