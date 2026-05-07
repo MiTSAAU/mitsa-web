@@ -8,6 +8,7 @@ const outDir = path.join(root, "dist");
 
 const jsxFiles = [
   "components/Tilt.jsx",
+  "components/Countdown.jsx",
   "components/Nav.jsx",
   "components/Hero.jsx",
   "components/Meta.jsx",
