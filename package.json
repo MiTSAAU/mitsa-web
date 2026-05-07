@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "build": "node scripts/build-industry-night-2026.js",
+    "test": "npm run build"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.0",
+    "@babel/preset-react": "^7.28.5"
+  }
+}

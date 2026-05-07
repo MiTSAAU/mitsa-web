@@ -62,7 +62,7 @@ const Panelists = () => {
             fontSize:'clamp(16px, 1.5vw, 20px)', lineHeight:1.5, color:'var(--paper-on-night-dim)',
             textWrap:'pretty', maxWidth:520
           }}>
-            Two parallel panels run on the night — one charting the frontier of <U c="var(--signal)">research</U>, one mapping the velocity of <U c="var(--acid)">industry</U>. Toggle below to flip rosters.
+            Two parallel panels run on the night — one charting the frontier of <PanelistsUnderline c="var(--signal)">research</PanelistsUnderline>, one mapping the velocity of <PanelistsUnderline c="var(--acid)">industry</PanelistsUnderline>. Toggle below to flip rosters.
           </p>
           <Toggle panel={panel} setPanel={setPanel}/>
         </div>
@@ -84,7 +84,7 @@ const Panelists = () => {
   );
 };
 
-const U = ({children, c}) => (
+const PanelistsUnderline = ({children, c}) => (
   <span style={{
     background:`linear-gradient(transparent 78%, ${c} 78%, ${c} 96%, transparent 96%)`,
     color:'var(--paper-on-night)', fontWeight:700
