@@ -55,14 +55,14 @@ const Nav = () => {
             animation:'pulse 1.6s ease-in-out infinite'
           }}/>
         </div>
-        <a href="#connect" className="rsvp-btn" style={{
+        <a href="https://events.humanitix.com/industry-night-sem-1-2026" target="_blank" rel="noopener" className="rsvp-btn" style={{
           display:'inline-flex', alignItems:'center',
           padding:'10px 16px',
           background:'var(--signal)', color:'var(--bone)',
           fontWeight:700, letterSpacing:'0.18em', fontSize:10,
           borderLeft:'1.5px solid var(--paper-on-night)',
           transition:'all 0.25s'
-        }}>RSVP →</a>
+        }}>GET TICKETS →</a>
         <button className="nav-burger" onClick={()=>setOpen(!open)} style={{
           display:'none', padding:'0 12px', borderLeft:'1.5px solid var(--paper-on-night)',
           color:'var(--acid)', background:'var(--night)', fontSize:18
