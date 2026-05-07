@@ -72,23 +72,11 @@ const About = () => {
 
 const Emblem = () => (
   <div style={{position:'relative', width:300, height:300, maxWidth:'100%'}}>
-    <svg viewBox="0 0 300 300" style={{width:'100%', height:'100%'}}>
-      <rect x="20" y="20" width="260" height="260" fill="none" stroke="var(--ink)" strokeWidth="2"/>
-      <rect x="20" y="20" width="260" height="36" fill="var(--ink)"/>
-      <text x="150" y="44" textAnchor="middle" fontFamily="Space Mono" fontSize="11" letterSpacing="3" fill="var(--acid)" fontWeight="700">MITSA · ADELAIDE UNI</text>
-
-      <rect x="40" y="76" width="220" height="180" fill="none" stroke="var(--ink)" strokeWidth="1" strokeDasharray="3 4"/>
-
-      <text x="150" y="200" textAnchor="middle"
-        fontFamily="Archivo Black" fontSize="160" fontWeight="400"
-        fill="var(--ink)">M</text>
-
-      <rect x="135" y="216" width="30" height="30" fill="var(--acid)" stroke="var(--ink)" strokeWidth="2"/>
-      <text x="150" y="237" textAnchor="middle" fontFamily="Archivo Black" fontSize="14" fill="var(--ink)">26</text>
-
-      <text x="40" y="275" fontFamily="Space Mono" fontSize="9" letterSpacing="2" fill="var(--ink-dim)" fontWeight="600">SIGNAL//001</text>
-      <text x="260" y="275" textAnchor="end" fontFamily="Space Mono" fontSize="9" letterSpacing="2" fill="var(--ink-dim)" fontWeight="600">ADELAIDE/AU</text>
-    </svg>
+    <img
+      src="assets/Round_MiTSA_logo.webp"
+      alt="MiTSA logo"
+      style={{width:'100%', height:'100%', objectFit:'contain'}}
+    />
   </div>
 );
 

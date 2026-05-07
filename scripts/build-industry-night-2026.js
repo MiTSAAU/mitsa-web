@@ -36,6 +36,7 @@ fs.rmSync(outDir, { recursive: true, force: true });
 fs.mkdirSync(outDir, { recursive: true });
 
 copyDir(path.join(sourceDir, "js"), path.join(outDir, "js"));
+copyDir(path.join(sourceDir, "assets"), path.join(outDir, "assets"));
 fs.writeFileSync(path.join(outDir, ".nojekyll"), "");
 
 const bundle = jsxFiles
