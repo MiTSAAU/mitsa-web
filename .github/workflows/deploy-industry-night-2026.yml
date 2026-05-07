@@ -6,6 +6,9 @@ on:
       - main
     paths:
       - "industry_night_2026/**"
+      - "scripts/**"
+      - "package.json"
+      - "package-lock.json"
       - ".github/workflows/deploy-industry-night-2026.yml"
   workflow_dispatch:
 
