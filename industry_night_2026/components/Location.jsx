@@ -2,9 +2,11 @@
 const Location = () => {
   const address = 'Adelaide SA 5005, Australia';
   const venue = 'Union House 605 Rumours Function Room, University of Adelaide';
+  const mapTarget = 'The University of Adelaide, Adelaide SA 5005, Australia';
   const query = encodeURIComponent(`${venue}, ${address}`);
+  const mapQuery = encodeURIComponent(mapTarget);
   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${query}`;
-  const embedUrl = `https://maps.google.com/maps?q=${query}&output=embed`;
+  const embedUrl = `https://maps.google.com/maps?q=${mapQuery}&output=embed`;
 
   return (
     <section id="location" className="section-pad" style={{
@@ -99,7 +101,8 @@ const Location = () => {
               width:'100%',
               height:'100%',
               border:0,
-              filter:'grayscale(1) contrast(1.2) invert(0.92) hue-rotate(180deg)'
+              filter:'grayscale(1) contrast(1.2) invert(0.92) hue-rotate(180deg)',
+              pointerEvents:'none'
             }}
           />
           <div style={{
@@ -116,7 +119,7 @@ const Location = () => {
             fontWeight:700,
             pointerEvents:'none'
           }}>
-            MAP MARKER · UNION HOUSE
+            MAP MARKER · ADELAIDE UNI
           </div>
           <MapPin/>
         </div>
@@ -134,8 +137,8 @@ const Location = () => {
 const MapPin = () => (
   <div className="ai-map-pin" style={{
     position:'absolute',
-    left:'45%',
-    top:'31%',
+    left:'50%',
+    top:'45%',
     width:92,
     height:112,
     transform:'translate(-50%, -100%)',
@@ -196,7 +199,7 @@ const MapPin = () => (
       @keyframes pinScan{0%{scale:.35; opacity:.8}70%{scale:1.15; opacity:0}100%{scale:1.15; opacity:0}}
       @keyframes pinShadow{0%,100%{scale:1; opacity:.5}50%{scale:.78; opacity:.25}}
       @media (max-width:720px){
-        .ai-map-pin{left:44% !important; top:33% !important; width:76px !important; height:92px !important}
+        .ai-map-pin{left:50% !important; top:45% !important; width:76px !important; height:92px !important}
       }
     `}</style>
   </div>
