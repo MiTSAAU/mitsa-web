@@ -454,21 +454,6 @@ const PanelistModal = ({p, color, idx, panel, onClose}) => {
               </div>
               {p.bio}
             </div>
-
-            <div style={{display:'flex', gap:12, flexWrap:'wrap'}}>
-              <button style={{
-                padding:'12px 18px', background:color, color:'var(--night)',
-                fontFamily:'var(--mono)', fontSize:11, letterSpacing:'0.22em',
-                fontWeight:700, textTransform:'uppercase', cursor:'pointer',
-                border:`1.5px solid ${color}`
-              }}>+ ADD TO RSVP</button>
-              <button onClick={onClose} style={{
-                padding:'12px 18px',
-                fontFamily:'var(--mono)', fontSize:11, letterSpacing:'0.22em',
-                fontWeight:700, textTransform:'uppercase', cursor:'pointer',
-                border:'1.5px solid var(--paper-on-night)', color:'var(--paper-on-night)'
-              }}>← BACK TO LINEUP</button>
-            </div>
           </div>
         </div>
       </div>
