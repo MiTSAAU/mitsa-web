@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const crypto = require("crypto");
 const babel = require("@babel/core");
 
 const root = path.resolve(__dirname, "..");
@@ -52,6 +53,7 @@ const bundle = jsxFiles
   .join("\n\n");
 
 fs.writeFileSync(path.join(outDir, "app.bundle.js"), bundle);
+const bundleHash = crypto.createHash("sha256").update(bundle).digest("hex").slice(0, 12);
 
 let html = fs.readFileSync(path.join(sourceDir, "Industry Night.html"), "utf8");
 
@@ -62,7 +64,7 @@ html = html.replace(
 );
 html = html.replace(
   /\n<script type="text\/babel" src="components\/Tilt\.jsx"><\/script>[\s\S]*?\n<script type="text\/babel" src="app\.jsx"><\/script>/,
-  '\n<script src="app.bundle.js"></script>'
+  `\n<script src="app.bundle.js?v=${bundleHash}"></script>`
 );
 
 fs.writeFileSync(path.join(outDir, "index.html"), html);
