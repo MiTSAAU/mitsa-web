@@ -8,11 +8,11 @@ const PANELISTS = {
     { id:'r5', name:'Dr. Atlas Henrikson',image:'', title:'Robotics & Autonomy',         org:'Adelaide Uni Robotics Group',       bio:'Designs control architectures for subsea autonomous vehicles; ex-DeepMind research scientist.', focus:['Robotics','Control','Autonomy'] },
   ],
   industry: [
-    { id:'i1', name:'Sable Marchetti',  image:'', title:'VP of Engineering',     org:'Atlassian',           bio:'Scales platform infrastructure across distributed teams; champion of Perth\u2019s tech diaspora.', focus:['Platform','Leadership','Scale'] },
-    { id:'i2', name:'Kavi Ramanathan',  image:'', title:'Founder & CTO',         org:'Halcyon AI',          bio:'Building agentic systems for industrial automation; previously led ML at Canva.', focus:['Agents','Startups','ML'] },
-    { id:'i3', name:'Imogen Ferreira',  image:'', title:'Head of Product',       org:'Rio Tinto · Digital', bio:'Operationalises AI across mine sites at planetary scale; mentor at Startmate.', focus:['Product','AI Ops','Industry'] },
-    { id:'i4', name:'Dashiell Park',    image:'', title:'Director, Cloud',       org:'Microsoft Azure',     bio:'Owns the APAC cloud strategy; advocate for open standards and edge inference.', focus:['Cloud','Strategy','Edge'] },
-    { id:'i5', name:'Noor Abdelrahman', image:'', title:'Principal Engineer',    org:'Canva',               bio:'Lead architect on real-time collaborative design surfaces; conference circuit regular.', focus:['Realtime','Collab','Design Eng'] },
+    { id:'i1', name:'Matthew Hobson', image:'', title:'Senior Leader', org:'Databricks', bio:'Works with organisations on the real-world path to scaled AI, with public commentary around data access, AI adoption, trust and measurable value through the Databricks ecosystem.', focus:['Data + AI','Lakehouse','AI Strategy'] },
+    { id:'i2', name:'Kat Docking', image:'', title:'Digital & Technology Graduate', org:'SA Power Networks', bio:'A Digital and Technology Graduate at SA Power Networks, South Australia’s electricity distributor, with early project experience connecting software, asset data and infrastructure insight.', focus:['Digital Tech','Utilities','Energy'] },
+    { id:'i3', name:'Binduja Sasi', image:'', title:'Procurement Professional', org:'Dept for Infrastructure & Transport', bio:'A procurement professional at South Australia’s Department for Infrastructure and Transport, working across goods, services and construction in a large public infrastructure environment.', focus:['Procurement','Infrastructure','Public Sector'] },
+    { id:'i4', name:'Toby Lewis', image:'', title:'Digital Strategy Executive', org:'Dept of Treasury & Finance', bio:'A solutions-focused senior executive with digital strategy expertise at South Australia’s Department of Treasury and Finance, where digital services support public value and state outcomes.', focus:['Digital Strategy','Government','Investment'] },
+    { id:'i5', name:'Networking Guests', image:'', title:'Additional Industry Guests', org:'Networking Session', bio:'Additional guests will join the networking session, giving students more chances to connect with people working across technology, infrastructure, energy, government and data-led organisations.', focus:['Networking','Careers','Industry'] },
   ]
 };
 
