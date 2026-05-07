@@ -118,6 +118,7 @@ const Location = () => {
           }}>
             MAP MARKER · UNION HOUSE
           </div>
+          <MapPin/>
         </div>
       </div>
 
@@ -129,6 +130,77 @@ const Location = () => {
     </section>
   );
 };
+
+const MapPin = () => (
+  <div className="ai-map-pin" style={{
+    position:'absolute',
+    left:'45%',
+    top:'31%',
+    width:92,
+    height:112,
+    transform:'translate(-50%, -100%)',
+    pointerEvents:'none',
+    filter:'drop-shadow(0 0 18px rgba(197,255,46,0.55))',
+    zIndex:3
+  }}>
+    <div className="pin-scan" style={{
+      position:'absolute',
+      left:'50%',
+      top:18,
+      width:118,
+      height:118,
+      transform:'translate(-50%, -50%)',
+      border:'1.5px solid var(--acid)',
+      opacity:0.5
+    }}/>
+    <svg viewBox="0 0 92 112" style={{position:'absolute', inset:0, width:'100%', height:'100%'}}>
+      <defs>
+        <linearGradient id="pinGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#C5FF2E"/>
+          <stop offset="55%" stopColor="#2A2BFF"/>
+          <stop offset="100%" stopColor="#FF4D17"/>
+        </linearGradient>
+      </defs>
+      <path d="M46 4 C24 4 10 19 10 40 C10 66 46 108 46 108 C46 108 82 66 82 40 C82 19 68 4 46 4 Z"
+        fill="var(--night)" stroke="url(#pinGrad)" strokeWidth="3"/>
+      <circle cx="46" cy="40" r="21" fill="rgba(11,11,15,0.9)" stroke="var(--acid)" strokeWidth="2"/>
+      <path d="M30 42 H40 L46 29 L53 53 L58 42 H64" fill="none" stroke="var(--acid)" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter"/>
+      <g stroke="var(--signal)" strokeWidth="1.5" fill="var(--acid)">
+        <line x1="27" y1="24" x2="37" y2="33"/>
+        <line x1="65" y1="24" x2="55" y2="33"/>
+        <line x1="26" y1="56" x2="38" y2="48"/>
+        <line x1="66" y1="56" x2="54" y2="48"/>
+        <circle cx="27" cy="24" r="3"/>
+        <circle cx="65" cy="24" r="3"/>
+        <circle cx="26" cy="56" r="3"/>
+        <circle cx="66" cy="56" r="3"/>
+      </g>
+      <text x="46" y="75" textAnchor="middle" fontFamily="Space Mono" fontSize="8" letterSpacing="1.5" fill="var(--paper-on-night)" fontWeight="700">AI NODE</text>
+    </svg>
+    <div className="pin-shadow" style={{
+      position:'absolute',
+      left:'50%',
+      bottom:-3,
+      width:62,
+      height:16,
+      transform:'translateX(-50%)',
+      border:'1.5px solid var(--acid)',
+      borderRadius:'50%',
+      background:'rgba(197,255,46,0.12)'
+    }}/>
+    <style>{`
+      .ai-map-pin{animation:pinFloat 2.4s ease-in-out infinite}
+      .ai-map-pin .pin-scan{animation:pinScan 2.4s ease-out infinite}
+      .ai-map-pin .pin-shadow{animation:pinShadow 2.4s ease-in-out infinite}
+      @keyframes pinFloat{0%,100%{translate:0 0}50%{translate:0 -8px}}
+      @keyframes pinScan{0%{scale:.35; opacity:.8}70%{scale:1.15; opacity:0}100%{scale:1.15; opacity:0}}
+      @keyframes pinShadow{0%,100%{scale:1; opacity:.5}50%{scale:.78; opacity:.25}}
+      @media (max-width:720px){
+        .ai-map-pin{left:44% !important; top:33% !important; width:76px !important; height:92px !important}
+      }
+    `}</style>
+  </div>
+);
 
 const InfoRow = ({label, value}) => (
   <div style={{
