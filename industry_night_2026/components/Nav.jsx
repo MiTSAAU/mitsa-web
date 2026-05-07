@@ -1,4 +1,4 @@
-// Top navigation: brutalist with hard-edged elements + live timestamp
+// Top navigation — neo-brutalist with hard edges + live timestamp
 const Nav = () => {
   const [time, setTime] = React.useState('');
   const [open, setOpen] = React.useState(false);
@@ -19,95 +19,95 @@ const Nav = () => {
   return (
     <>
     <nav style={{
-      position:'fixed', top:24, left:24, right:24, zIndex:50,
-      display:'flex', alignItems:'center', justifyContent:'space-between',
-      padding:'12px 16px',
-      background:'rgba(6,9,26,0.7)',
-      backdropFilter:'blur(14px) saturate(1.4)',
-      WebkitBackdropFilter:'blur(14px) saturate(1.4)',
-      border:'1px solid var(--c-cyan)',
-      boxShadow:'0 0 0 1px rgba(76,240,255,0.15), 0 8px 40px rgba(0,0,0,0.4)',
-      fontFamily:'var(--mono)', fontSize:10, letterSpacing:'0.22em', textTransform:'uppercase',
-      color:'var(--ink-dim)'
+      position:'fixed', top:20, left:20, right:20, zIndex:50,
+      display:'flex', alignItems:'stretch', justifyContent:'space-between',
+      background:'var(--night)',
+      border:'1.5px solid var(--paper-on-night)',
+      fontFamily:'var(--mono)', fontSize:10, letterSpacing:'0.18em', textTransform:'uppercase',
+      color:'var(--paper-on-night-dim)'
     }}>
-      <div style={{display:'flex', alignItems:'center', gap:10}}>
+      <div style={{display:'flex', alignItems:'center', gap:10, padding:'10px 14px',
+        borderRight:'1.5px solid var(--paper-on-night)', background:'var(--acid)', color:'var(--night)'}}>
         <Logomark/>
-        <span style={{color:'var(--ink)', fontWeight:600}}>MITSA</span>
-        <span style={{color:'var(--c-cyan)'}}>×</span>
-        <span style={{display:'none'}} className="nav-sub">INDUSTRY NIGHT '26</span>
+        <span style={{fontWeight:700, letterSpacing:'0.22em'}}>MITSA</span>
+        <span>×</span>
+        <span style={{display:'none', fontWeight:700}} className="nav-sub">INDUSTRY NIGHT '26</span>
       </div>
 
-      <div className="nav-links" style={{display:'flex', gap:24}}>
+      <div className="nav-links" style={{display:'flex', alignItems:'center', gap:24, padding:'0 16px'}}>
         {links.map(l=>(
           <a key={l.label} href={l.href} className="nav-link"
-             style={{display:'flex', alignItems:'center', gap:6, color:'var(--ink-dim)'}}>
-            <span style={{color:'var(--c-cyan)', fontSize:9}}>[{l.n}]</span>
-            <span>{l.label}</span>
+             style={{display:'flex', alignItems:'center', gap:6, color:'var(--paper-on-night-dim)'}}>
+            <span style={{color:'var(--acid)', fontSize:9, fontWeight:700}}>[{l.n}]</span>
+            <span style={{fontWeight:700}}>{l.label}</span>
           </a>
         ))}
       </div>
 
-      <div style={{display:'flex', alignItems:'center', gap:12}}>
-        <span className="nav-time" style={{color:'var(--ink)', fontWeight:500}}>{time}</span>
-        <span style={{
-          width:8,height:8,borderRadius:0,
-          background:'var(--c-lime)',
-          boxShadow:'0 0 0 3px rgba(196,255,58,0.3)',
-          animation:'pulse 1.6s ease-in-out infinite'
-        }}/>
+      <div style={{display:'flex', alignItems:'stretch'}}>
+        <div style={{display:'flex', alignItems:'center', gap:10, padding:'0 14px',
+          borderLeft:'1.5px solid var(--paper-on-night)'}}>
+          <span className="nav-time" style={{color:'var(--paper-on-night)', fontWeight:700}}>{time}</span>
+          <span style={{
+            width:8,height:8,
+            background:'var(--acid)',
+            boxShadow:'0 0 0 3px rgba(197,255,46,0.3)',
+            animation:'pulse 1.6s ease-in-out infinite'
+          }}/>
+        </div>
         <a href="#connect" className="rsvp-btn" style={{
-          padding:'8px 14px',
-          background:'var(--c-cyan)',
-          color:'var(--bg)',
+          display:'inline-flex', alignItems:'center',
+          padding:'10px 16px',
+          background:'var(--signal)', color:'var(--bone)',
           fontWeight:700, letterSpacing:'0.18em', fontSize:10,
-          border:'1px solid var(--c-cyan)',
-          transition:'all 0.3s'
+          borderLeft:'1.5px solid var(--paper-on-night)',
+          transition:'all 0.25s'
         }}>RSVP →</a>
         <button className="nav-burger" onClick={()=>setOpen(!open)} style={{
-          display:'none', padding:8, border:'1px solid var(--c-cyan)', color:'var(--c-cyan)'
+          display:'none', padding:'0 12px', borderLeft:'1.5px solid var(--paper-on-night)',
+          color:'var(--acid)', background:'var(--night)', fontSize:18
         }}>≡</button>
       </div>
     </nav>
 
-    {/* Mobile menu */}
     {open && (
       <div style={{
-        position:'fixed', top:80, left:24, right:24, zIndex:49,
-        background:'var(--bg)', border:'1px solid var(--c-cyan)',
-        padding:'24px', display:'flex', flexDirection:'column', gap:12
+        position:'fixed', top:74, left:20, right:20, zIndex:49,
+        background:'var(--night)', border:'1.5px solid var(--paper-on-night)',
+        padding:'18px', display:'flex', flexDirection:'column', gap:10
       }} onClick={()=>setOpen(false)}>
         {links.map(l=>(
           <a key={l.label} href={l.href}
              style={{
-               fontFamily:'var(--mono)', fontSize:14, letterSpacing:'0.18em', textTransform:'uppercase',
-               color:'var(--ink)', padding:'10px 0', borderBottom:'1px solid var(--line)'
+               fontFamily:'var(--mono)', fontSize:13, letterSpacing:'0.18em', textTransform:'uppercase',
+               color:'var(--paper-on-night)', padding:'10px 0', borderBottom:'1px solid var(--rule-on-night)',
+               fontWeight:700
              }}>
-            <span style={{color:'var(--c-cyan)', marginRight:12}}>[{l.n}]</span>{l.label}
+            <span style={{color:'var(--acid)', marginRight:12}}>[{l.n}]</span>{l.label}
           </a>
         ))}
       </div>
     )}
 
     <style>{`
-      .nav-link{transition:color .3s; position:relative}
-      .nav-link:hover{color:var(--c-cyan)}
+      .nav-link{transition:color .25s; position:relative}
+      .nav-link:hover{color:var(--acid)}
       .nav-link::after{
         content:""; position:absolute; left:0; right:0; bottom:-4px;
-        height:2px; background:var(--c-cyan); transform:scaleX(0); transform-origin:left;
-        transition:transform .4s ease;
+        height:2px; background:var(--acid); transform:scaleX(0); transform-origin:left;
+        transition:transform .3s ease;
       }
       .nav-link:hover::after{transform:scaleX(1)}
-      .rsvp-btn:hover{background:var(--c-magenta); border-color:var(--c-magenta); color:#fff;
-        box-shadow:0 0 24px rgba(255,92,182,0.6)}
+      .rsvp-btn:hover{background:var(--acid); color:var(--night)}
       @keyframes pulse{
-        0%,100%{box-shadow:0 0 0 3px rgba(196,255,58,0.3)}
-        50%{box-shadow:0 0 0 8px rgba(196,255,58,0.0)}
+        0%,100%{box-shadow:0 0 0 3px rgba(197,255,46,0.3)}
+        50%{box-shadow:0 0 0 8px rgba(197,255,46,0.0)}
       }
       @media (min-width:721px){.nav-sub{display:inline !important}}
       @media (max-width:900px){
         .nav-links{display:none !important}
         .nav-burger{display:inline-flex !important; align-items:center; justify-content:center;
-          font-size:18px; line-height:1; width:36px; height:36px}
+          line-height:1; width:44px}
       }
       @media (max-width:480px){
         .nav-time{display:none}
@@ -118,16 +118,10 @@ const Nav = () => {
 };
 
 const Logomark = () => (
-  <svg width="22" height="22" viewBox="0 0 22 22" style={{display:'block'}}>
-    <defs>
-      <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stopColor="#4cf0ff"/>
-        <stop offset="100%" stopColor="#ff5cb6"/>
-      </linearGradient>
-    </defs>
-    <rect x="1" y="1" width="20" height="20" fill="none" stroke="var(--c-cyan)" strokeWidth="1"/>
-    <circle cx="11" cy="11" r="6" fill="url(#logoGrad)"/>
-    <circle cx="11" cy="11" r="9" fill="none" stroke="var(--c-cyan)" strokeWidth="0.5" strokeDasharray="2 2"/>
+  <svg width="20" height="20" viewBox="0 0 22 22" style={{display:'block'}}>
+    <rect x="1" y="1" width="20" height="20" fill="none" stroke="var(--night)" strokeWidth="1.5"/>
+    <rect x="6" y="6" width="10" height="10" fill="var(--night)"/>
+    <rect x="9" y="9" width="4" height="4" fill="var(--acid)"/>
   </svg>
 );
 

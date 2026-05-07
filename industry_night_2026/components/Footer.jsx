@@ -1,4 +1,4 @@
-// Footer — gigantic glowing date + brutalist info row
+// Footer — dark night finale, gigantic stroked date
 const Footer = () => {
   const [time, setTime] = React.useState('');
   React.useEffect(()=>{
@@ -9,40 +9,55 @@ const Footer = () => {
 
   return (
     <footer style={{
-      position:'relative', borderTop:'1px solid var(--c-cyan)',
-      padding:'80px 32px 32px', overflow:'hidden'
+      position:'relative', borderTop:'1.5px solid var(--paper-on-night)',
+      padding:'80px 32px 32px', overflow:'hidden', background:'var(--night)'
     }}>
-      <div style={{
-        fontFamily:'var(--serif)', fontStyle:'italic', fontWeight:400,
-        fontSize:'clamp(80px, 18vw, 320px)', lineHeight:0.85,
-        letterSpacing:'-0.04em',
-        background:'linear-gradient(95deg, var(--c-cyan) 0%, var(--c-violet) 30%, var(--c-magenta) 60%, var(--c-orange) 100%)',
-        WebkitBackgroundClip:'text', backgroundClip:'text',
+      <div className="display" style={{
+        fontFamily:'var(--display)', fontWeight:400,
+        fontSize:'clamp(80px, 22vw, 380px)', lineHeight:0.84,
+        letterSpacing:'-0.05em',
         color:'transparent',
-        backgroundSize:'200% 100%',
-        animation:'gradShiftFooter 10s ease-in-out infinite',
+        WebkitTextStroke:'2.5px var(--acid)',
         marginBottom:48, textAlign:'center', userSelect:'none',
-        filter:'drop-shadow(0 0 32px rgba(76,240,255,0.3))'
+        textTransform:'uppercase'
       }}>
         18.05.26
-        <style>{`@keyframes gradShiftFooter{0%,100%{background-position:0% 0}50%{background-position:100% 0}}`}</style>
+      </div>
+
+      <div style={{
+        display:'flex', justifyContent:'center', marginBottom:48
+      }}>
+        <div style={{
+          display:'flex', gap:0, border:'1.5px solid var(--paper-on-night)'
+        }}>
+          <div style={{padding:'12px 18px', background:'var(--acid)', color:'var(--night)',
+            fontFamily:'var(--mono)', fontSize:11, letterSpacing:'0.22em', fontWeight:700,
+            borderRight:'1.5px solid var(--paper-on-night)'}}>
+            ★ SAVE THE DATE
+          </div>
+          <div style={{padding:'12px 18px', background:'var(--night)', color:'var(--paper-on-night)',
+            fontFamily:'var(--mono)', fontSize:11, letterSpacing:'0.22em', fontWeight:700}}>
+            17:30 ACST · ADELAIDE
+          </div>
+        </div>
       </div>
 
       <div className="footer-row" style={{
         display:'flex', justifyContent:'space-between', alignItems:'flex-end',
         flexWrap:'wrap', gap:32,
-        fontFamily:'var(--mono)', fontSize:10, letterSpacing:'0.22em',
-        textTransform:'uppercase', color:'var(--ink-dim)'
+        fontFamily:'var(--mono)', fontSize:10, letterSpacing:'0.18em',
+        textTransform:'uppercase', color:'var(--paper-on-night-dim)',
+        borderTop:'1.5px solid var(--rule-on-night)', paddingTop:24
       }}>
         <div style={{display:'flex', flexDirection:'column', gap:6}}>
-          <span style={{color:'var(--c-cyan)', fontWeight:700}}>MITSA · INDUSTRY NIGHT 2026</span>
-          <span>UWA · Master's in Technology Student Association</span>
-          <span style={{color:'var(--ink-faint)'}}>{time}</span>
+          <span style={{color:'var(--acid)', fontWeight:700}}>MITSA · INDUSTRY NIGHT 2026</span>
+          <span style={{fontWeight:600}}>Adelaide University · Master's in Technology Student Association</span>
+          <span style={{color:'var(--paper-on-night-faint)'}}>{time}</span>
         </div>
         <div style={{display:'flex', flexDirection:'column', gap:6, textAlign:'right'}}>
-          <span>NETWORKING · RESEARCH · INDUSTRY</span>
-          <span style={{color:'var(--c-lime)', fontWeight:700}}>● TRANSMITTING</span>
-          <span style={{color:'var(--ink-faint)'}}>See you on the 18th</span>
+          <span style={{fontWeight:600}}>NETWORKING · RESEARCH · INDUSTRY</span>
+          <span style={{color:'var(--acid)', fontWeight:700}}>● TRANSMITTING</span>
+          <span style={{color:'var(--paper-on-night-faint)'}}>See you on the 18th</span>
         </div>
       </div>
     </footer>
