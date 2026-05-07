@@ -15,6 +15,7 @@ const jsxFiles = [
   "components/Meta.jsx",
   "components/Panelists.jsx",
   "components/About.jsx",
+  "components/Location.jsx",
   "components/Footer.jsx",
   "app.jsx",
 ];

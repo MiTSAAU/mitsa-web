@@ -5,6 +5,7 @@ const App = () => (
     <Meta/>
     <Panelists/>
     <About/>
+    <Location/>
     <Footer/>
   </main>
 );
