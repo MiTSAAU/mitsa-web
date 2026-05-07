@@ -139,8 +139,8 @@ const MapPin = () => (
     position:'absolute',
     left:'50%',
     top:'45%',
-    width:92,
-    height:112,
+    width:76,
+    height:94,
     transform:'translate(-50%, -100%)',
     pointerEvents:'none',
     filter:'drop-shadow(0 0 18px rgba(197,255,46,0.55))',
@@ -178,7 +178,6 @@ const MapPin = () => (
         <circle cx="26" cy="56" r="3"/>
         <circle cx="66" cy="56" r="3"/>
       </g>
-      <text x="46" y="75" textAnchor="middle" fontFamily="Space Mono" fontSize="8" letterSpacing="1.5" fill="var(--paper-on-night)" fontWeight="700">AI NODE</text>
     </svg>
     <div className="pin-shadow" style={{
       position:'absolute',
@@ -199,7 +198,7 @@ const MapPin = () => (
       @keyframes pinScan{0%{scale:.35; opacity:.8}70%{scale:1.15; opacity:0}100%{scale:1.15; opacity:0}}
       @keyframes pinShadow{0%,100%{scale:1; opacity:.5}50%{scale:.78; opacity:.25}}
       @media (max-width:720px){
-        .ai-map-pin{left:50% !important; top:45% !important; width:76px !important; height:92px !important}
+        .ai-map-pin{left:50% !important; top:45% !important; width:64px !important; height:78px !important}
       }
     `}</style>
   </div>
